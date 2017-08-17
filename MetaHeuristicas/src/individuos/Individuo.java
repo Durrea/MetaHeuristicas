@@ -19,31 +19,30 @@ public class Individuo implements IntIndividuo {
 
     private List solucion = new ArrayList();
     private double evaluacion;
-    private IntProblema problema; 
+    private IntProblema problema;
 
     public Individuo(IntProblema problema) {
         this.problema = problema;
-
     }
 
     @Override
     public void generarConfiguracionRandom(int tamaño, double min, double max, Random aleatorio) {
         for (int i = 0; i < tamaño; i++) {
             this.solucion.add((double) (aleatorio.nextDouble() * (max - min)) + min);
-            //System.out.println(this.solucion.get(i));
         }
         this.getEvaluacion();
     }
 
     @Override
     public void tweak(double cambio, double min, double max, Random aleatorio) {
-        //int posElemento = (int) (Math.random() * (this.getSolucion().size()));
         for (int posElemento = 0; posElemento < this.getSolucion().size(); posElemento++) {
             Double elementoTweak = ((Double) this.getSolucion().get(posElemento)) + ((double) (aleatorio.nextDouble() * (cambio * 2)) - cambio);
-            while (elementoTweak < min || elementoTweak > max) {
-                elementoTweak = ((Double) this.getSolucion().get(posElemento)) + ((double) (aleatorio.nextDouble() * (cambio * 2)) - cambio);
+            if (elementoTweak < min) {
+                elementoTweak = min;
             }
-            //System.out.println(elementoTweak);
+            if (elementoTweak > max) {
+                elementoTweak = max;
+            }
             this.getSolucion().set(posElemento, elementoTweak);
         }
         this.getEvaluacion();
