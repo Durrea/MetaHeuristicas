@@ -13,6 +13,18 @@ import individuos.IntIndividuo;
  */
 public class Esfera implements IntProblema {
 
+    private static Esfera esfera;
+
+    private Esfera() {
+    }
+
+    public static Esfera getInstance() {
+        if (esfera == null) {
+            esfera = new Esfera();
+        }
+        return esfera;
+    }
+
     @Override
     public double generarEvaluacion(IntIndividuo individuo) {
         double evaluacion = 0;

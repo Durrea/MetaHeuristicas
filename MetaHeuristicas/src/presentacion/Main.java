@@ -5,9 +5,13 @@
  */
 package presentacion;
 
+import algoritmos.AlgoritmoAbstract;
 import algoritmos.HillClimbing;
-import algoritmos.IntAlgoritmo;
+import algoritmos.HillClimbingMP;
+import algoritmos.HillClimbingMPR;
 import individuos.IntIndividuo;
+import problemas.Esfera;
+import problemas.IntProblema;
 
 /**
  *
@@ -20,24 +24,44 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        ejecutar();
+    }
+
+    private static void ejecutar() {
         int tam = 2;
         double max = 100;
         double min = -100;
         double cambio = 0.1;
-        double iteraciones = 9999;
-        
+        double iteraciones = 5000;
+        int numVecinos = 5;
+        IntProblema problema = Esfera.getInstance();
+
         double sumaEvaluaciones = 0;
 
-        IntAlgoritmo hillClimbing = new HillClimbing(tam, max, min, cambio, iteraciones);
+        AlgoritmoAbstract algoritmo = new HillClimbing(problema, tam, max, min, cambio, iteraciones);
         IntIndividuo individuo;
-        
+
         for (int i = 0; i < 50; i++) {
-            individuo = hillClimbing.run();
+            individuo = algoritmo.run(i);
             sumaEvaluaciones += individuo.getEvaluacion();
         }
-        
-        System.out.println("La evaluación promedio fue de : " + sumaEvaluaciones/50);
-        
+        System.out.println("HC --> La evaluación promedio fue de : " + sumaEvaluaciones / 50);
+
+        algoritmo = new HillClimbingMP(problema, tam, max, min, cambio, iteraciones, numVecinos);
+
+        for (int i = 0; i < 50; i++) {
+            individuo = algoritmo.run(i);
+            sumaEvaluaciones += individuo.getEvaluacion();
+        }
+        System.out.println("HC MP --> La evaluación promedio fue de : " + sumaEvaluaciones / 50);
+
+        algoritmo = new HillClimbingMPR(problema, tam, max, min, cambio, iteraciones, numVecinos);
+
+        for (int i = 0; i < 50; i++) {
+            individuo = algoritmo.run(i);
+            sumaEvaluaciones += individuo.getEvaluacion();
+        }
+        System.out.println("HC MPR --> La evaluación promedio fue de : " + sumaEvaluaciones / 50);
     }
 
 }

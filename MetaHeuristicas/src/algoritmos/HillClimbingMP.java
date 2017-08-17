@@ -12,14 +12,16 @@ import problemas.IntProblema;
 
 /**
  *
- * @author Urrea
+ * @author ingesis
  */
-public class HillClimbing extends AlgoritmoAbstract {
+public class HillClimbingMP extends AlgoritmoAbstract {
 
     private int i;
+    private final int NUM_VECINOS;
 
-    public HillClimbing(IntProblema problema, int tam, double max, double min, double cambio, double iteraciones) {
+    public HillClimbingMP(IntProblema problema, int tam, double max, double min, double cambio, double iteraciones, int numVecinos) {
         super(problema, tam, max, min, cambio, iteraciones);
+        this.NUM_VECINOS = numVecinos;
     }
 
     @Override
@@ -27,11 +29,19 @@ public class HillClimbing extends AlgoritmoAbstract {
         Random aleatorio = new Random(seed);
         IntIndividuo s = new Individuo(problema);
         IntIndividuo r;
+        IntIndividuo w;
         s.generarConfiguracionRandom(TAM, MIN, MAX, aleatorio);
         i = 0;
         do {
             r = s.clonarIndividuo();
             r.tweak(CAMBIO, MIN, MAX, aleatorio);
+            for (int j = 0; j < NUM_VECINOS; j++) {
+                w = s.clonarIndividuo();
+                w.tweak(CAMBIO, MIN, MAX, aleatorio);
+                if (w.getEval() < r.getEval()) {
+                    r = w;
+                }
+            }
             if (r.getEval() < s.getEval()) {
                 s = r;
             }
@@ -41,5 +51,7 @@ public class HillClimbing extends AlgoritmoAbstract {
         //System.out.println("El mejor individuo obtuvo una evaluación final de: " + s.getEval());
         return s;
     }
+
+    
 
 }
