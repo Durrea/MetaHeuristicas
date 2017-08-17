@@ -20,11 +20,11 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        int tam = 10;
-        double max = 5;
-        double min = -5;
+        int tam = 2;
+        double max = 100;
+        double min = -100;
         double cambio = 0.1;
-        double iteraciones = 300;
+        double iteraciones = 9999;
         
         double sumaEvaluaciones = 0;
 

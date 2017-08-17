@@ -20,6 +20,7 @@ public class Esfera implements IntProblema {
             evaluacion += Double.parseDouble(individuo.getSolucion().get(i).toString()) * Double.parseDouble(individuo.getSolucion().get(i).toString());
         }
         //System.out.println("Eval " + evaluacion);
+        individuo.setEvaluacion(evaluacion);
         return evaluacion;
     }
 }

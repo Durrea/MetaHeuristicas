@@ -32,19 +32,19 @@ public class HillClimbing implements IntAlgoritmo {
     @Override
     public IntIndividuo run() {
         IntIndividuo s = new SolucionEsfera();
-        IntIndividuo r ;
+        IntIndividuo r;
         s.generarConfiguracionRandom(TAM, MIN, MAX);
         i = 0;
         do {
             r = s.clonarIndividuo();
             r.tweak(CAMBIO, MIN, MAX);
-            if (r.getEvaluacion()< s.getEvaluacion()) {
+            if (r.getEval() < s.getEval()) {
                 s = r.clonarIndividuo();
             }
             i++;
         } while (i < ITERACIONES);
 
-        System.out.println("El mejor individuo obtuvo una evaluación final de: " + s.getEvaluacion());
+        //System.out.println("El mejor individuo obtuvo una evaluación final de: " + s.getEval());
         return s;
     }
 }

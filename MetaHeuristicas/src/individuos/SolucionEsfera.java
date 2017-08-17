@@ -16,7 +16,7 @@ import problemas.IntProblema;
  */
 public class SolucionEsfera implements IntIndividuo {
 
-    private List solucion = new ArrayList<Double>();
+    private List solucion = new ArrayList();
     private double evaluacion;
 
     @Override
@@ -30,13 +30,15 @@ public class SolucionEsfera implements IntIndividuo {
 
     @Override
     public void tweak(double cambio, double min, double max) {
-        int posElemento = (int) (Math.random() * (this.getSolucion().size()));
-        Double elementoTweak = ((Double) this.getSolucion().get(posElemento)) + ((double) (Math.random() * (cambio * 2)) - cambio);
-        while (elementoTweak < min || elementoTweak > max) {
-            elementoTweak = ((Double) this.getSolucion().get(posElemento)) + ((double) (Math.random() * (cambio * 2)) - cambio);
+        //int posElemento = (int) (Math.random() * (this.getSolucion().size()));
+        for (int posElemento = 0; posElemento < this.getSolucion().size(); posElemento++) {
+            Double elementoTweak = ((Double) this.getSolucion().get(posElemento)) + ((double) (Math.random() * (cambio * 2)) - cambio);
+            while (elementoTweak < min || elementoTweak > max) {
+                elementoTweak = ((Double) this.getSolucion().get(posElemento)) + ((double) (Math.random() * (cambio * 2)) - cambio);
+            }
+            //System.out.println(elementoTweak);
+            this.getSolucion().set(posElemento, elementoTweak);
         }
-        //System.out.println(elementoTweak);
-        this.getSolucion().set(posElemento, elementoTweak);
         this.getEvaluacion();
     }
 
@@ -58,6 +60,7 @@ public class SolucionEsfera implements IntIndividuo {
         for (int i = 0; i < this.getSolucion().size(); i++) {
             clon.getSolucion().add(this.getSolucion().get(i));
         }
+        clon.setEvaluacion(this.getEval());
         return clon;
     }
 
