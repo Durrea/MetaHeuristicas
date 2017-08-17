@@ -5,7 +5,7 @@
  */
 package problemas;
 
-import individuos.IntIndividuo;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,5 +13,5 @@ import individuos.IntIndividuo;
  */
 public interface IntProblema {
 
-    public double generarEvaluacion(IntIndividuo individuo);
+    public double generarEvaluacion(ArrayList individuo);
 }

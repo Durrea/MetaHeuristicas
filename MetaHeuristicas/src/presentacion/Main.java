@@ -10,6 +10,7 @@ import algoritmos.HillClimbing;
 import algoritmos.HillClimbingMP;
 import algoritmos.HillClimbingMPR;
 import individuos.IntIndividuo;
+import java.util.Date;
 import problemas.Esfera;
 import problemas.IntProblema;
 
@@ -37,7 +38,10 @@ public class Main {
         IntProblema problema = Esfera.getInstance();
 
         double sumaEvaluaciones = 0;
-
+        long TInicio, TFin, tiempo; //Variables para determinar el tiempo de ejecución
+        
+        TInicio = System.currentTimeMillis();//Hora inicial en la que arranca la ejecución del algoritmo
+        
         AlgoritmoAbstract algoritmo = new HillClimbing(problema, tam, max, min, cambio, iteraciones);
         IntIndividuo individuo;
 
@@ -46,6 +50,10 @@ public class Main {
             sumaEvaluaciones += individuo.getEvaluacion();
         }
         System.out.println("HC --> La evaluación promedio fue de : " + sumaEvaluaciones / 50);
+        
+        TFin = System.currentTimeMillis(); //Tomamos la hora en que finalizó el algoritmo y la almacenamos en la variable T
+        tiempo = TFin - TInicio; //Calculamos los milisegundos de diferencia
+        System.out.println("Tiempo de ejecución en milisegundos: " + tiempo); //Mostramos en pantalla el tiempo de ejecución en milisegundos
 
         algoritmo = new HillClimbingMP(problema, tam, max, min, cambio, iteraciones, numVecinos);
 

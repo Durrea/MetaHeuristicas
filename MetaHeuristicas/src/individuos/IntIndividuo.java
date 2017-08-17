@@ -5,7 +5,7 @@
  */
 package individuos;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 import problemas.IntProblema;
 
@@ -27,9 +27,9 @@ public interface IntIndividuo {
 
     public IntIndividuo clonarIndividuo();
 
-    public List getSolucion();
+    public ArrayList getSolucion();
 
-    public void setSolucion(List solucion);
+    public void setSolucion(ArrayList solucion);
     
     public IntProblema getProblema();
     

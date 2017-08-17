@@ -17,6 +17,8 @@ import problemas.IntProblema;
 public class HillClimbing extends AlgoritmoAbstract {
 
     private int i;
+    IntIndividuo s;
+    IntIndividuo r;
 
     public HillClimbing(IntProblema problema, int tam, double max, double min, double cambio, double iteraciones) {
         super(problema, tam, max, min, cambio, iteraciones);
@@ -25,8 +27,7 @@ public class HillClimbing extends AlgoritmoAbstract {
     @Override
     public IntIndividuo run(long seed) {
         Random aleatorio = new Random(seed);
-        IntIndividuo s = new Individuo(problema);
-        IntIndividuo r;
+        s = new Individuo(problema);
         s.generarConfiguracionRandom(TAM, MIN, MAX, aleatorio);
         i = 0;
         do {
