@@ -23,7 +23,7 @@ public class SolucionEsfera implements IntIndividuo {
     public void generarConfiguracionRandom(int tamaño, double min, double max) {
         for (int i = 0; i < tamaño; i++) {
             this.solucion.add((double) (Math.random() * (max - min)) + min);
-            System.out.println(this.solucion.get(i));
+            //System.out.println(this.solucion.get(i));
         }
         this.getEvaluacion();
     }
@@ -35,7 +35,7 @@ public class SolucionEsfera implements IntIndividuo {
         while (elementoTweak < min || elementoTweak > max) {
             elementoTweak = ((Double) this.getSolucion().get(posElemento)) + ((double) (Math.random() * (cambio * 2)) - cambio);
         }
-        System.out.println(elementoTweak);
+        //System.out.println(elementoTweak);
         this.getSolucion().set(posElemento, elementoTweak);
         this.getEvaluacion();
     }

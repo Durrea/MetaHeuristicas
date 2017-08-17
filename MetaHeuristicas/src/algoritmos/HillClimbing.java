@@ -44,7 +44,7 @@ public class HillClimbing implements IntAlgoritmo {
             i++;
         } while (i < ITERACIONES);
 
-        System.out.println("El mejor ind obtuvo una evaluación final de: " + s.getEvaluacion());
+        System.out.println("El mejor individuo obtuvo una evaluación final de: " + s.getEvaluacion());
         return s;
     }
 }
