@@ -37,39 +37,14 @@ public class Main {
         int numVecinos = 5;
         IntProblema problema = Esfera.getInstance();
 
-        double sumaEvaluaciones = 0;
-        long TInicio, TFin, tiempo; //Variables para determinar el tiempo de ejecución
-        
-        TInicio = System.currentTimeMillis();//Hora inicial en la que arranca la ejecución del algoritmo
-        
-        AlgoritmoAbstract algoritmo = new HillClimbing(problema, tam, max, min, cambio, iteraciones);
-        IntIndividuo individuo;
+        AlgoritmoAbstract algoritmo;
 
-        for (int i = 0; i < 50; i++) {
-            individuo = algoritmo.run(i);
-            sumaEvaluaciones += individuo.getEvaluacion();
-        }
-        System.out.println("HC --> La evaluación promedio fue de : " + sumaEvaluaciones / 50);
-        
-        TFin = System.currentTimeMillis(); //Tomamos la hora en que finalizó el algoritmo y la almacenamos en la variable T
-        tiempo = TFin - TInicio; //Calculamos los milisegundos de diferencia
-        System.out.println("Tiempo de ejecución en milisegundos: " + tiempo); //Mostramos en pantalla el tiempo de ejecución en milisegundos
-
+        algoritmo = new HillClimbing(problema, tam, max, min, cambio, iteraciones);
+        System.out.println("Promedio HC: " + algoritmo.resultadoPromedio(50));
         algoritmo = new HillClimbingMP(problema, tam, max, min, cambio, iteraciones, numVecinos);
-
-        for (int i = 0; i < 50; i++) {
-            individuo = algoritmo.run(i);
-            sumaEvaluaciones += individuo.getEvaluacion();
-        }
-        System.out.println("HC MP --> La evaluación promedio fue de : " + sumaEvaluaciones / 50);
-
+        System.out.println("Promedio HCMP: " + algoritmo.resultadoPromedio(50));
         algoritmo = new HillClimbingMPR(problema, tam, max, min, cambio, iteraciones, numVecinos);
-
-        for (int i = 0; i < 50; i++) {
-            individuo = algoritmo.run(i);
-            sumaEvaluaciones += individuo.getEvaluacion();
-        }
-        System.out.println("HC MPR --> La evaluación promedio fue de : " + sumaEvaluaciones / 50);
+        System.out.println("Promedio HCMPR: " + algoritmo.resultadoPromedio(50));
     }
 
 }

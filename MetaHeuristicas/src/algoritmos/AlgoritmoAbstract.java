@@ -32,4 +32,13 @@ public abstract class AlgoritmoAbstract {
     }
 
     public abstract IntIndividuo run(long seed);
+    
+    public double resultadoPromedio(int valorCentral)
+    {
+        double promedio = 0;
+        for (int j = 0; j < valorCentral; j++) {
+            promedio += this.run(j).getEval();
+        }
+        return (promedio/valorCentral);
+    }
 }
