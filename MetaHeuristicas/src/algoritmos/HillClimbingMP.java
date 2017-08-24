@@ -25,11 +25,11 @@ public class HillClimbingMP extends AlgoritmoAbstract {
     }
 
     @Override
-    public IntIndividuo run(long seed) {
+    public Individuo run(long seed) {
         Random aleatorio = new Random(seed);
-        IntIndividuo s = new Individuo(problema);
-        IntIndividuo r;
-        IntIndividuo w;
+        Individuo s = new Individuo(problema);
+        Individuo r;
+        Individuo w;
         s.generarConfiguracionRandom(TAM, MIN, MAX, aleatorio);
         i = 0;
         do {

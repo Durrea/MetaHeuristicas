@@ -5,42 +5,40 @@
  */
 package algoritmos;
 
-import individuos.IntIndividuo;
 import individuos.Individuo;
 import java.util.Random;
 import problemas.IntProblema;
 
 /**
  *
- * @author Urrea
+ * @author ingesis
  */
-public class HillClimbing extends AlgoritmoAbstract {
+public class RandomSearch extends AlgoritmoAbstract {
 
     private int i;
+    Individuo best;
     Individuo s;
-    Individuo r;
 
-    public HillClimbing(IntProblema problema, int tam, double max, double min, double cambio, double iteraciones) {
+    public RandomSearch(IntProblema problema, int tam, double max, double min, double cambio, double iteraciones) {
         super(problema, tam, max, min, cambio, iteraciones);
     }
 
     @Override
     public Individuo run(long seed) {
         Random aleatorio = new Random(seed);
-        s = new Individuo(problema);
-        s.generarConfiguracionRandom(TAM, MIN, MAX, aleatorio);
+        best = new Individuo(problema);
+        best.generarConfiguracionRandom(TAM, MIN, MAX, aleatorio);
         i = 0;
         do {
-            r = s.clonarIndividuo();
-            r.tweak(CAMBIO, MIN, MAX, aleatorio);
-            if (r.getEval() < s.getEval()) {
-                s = r;
+            s = new Individuo(problema);
+            s.generarConfiguracionRandom(TAM, MIN, MAX, aleatorio);
+            if (s.getEval() < best.getEval()) {
+                best = s;
             }
             i++;
         } while (i < ITERACIONES);
-
         //System.out.println("El mejor individuo obtuvo una evaluación final de: " + s.getEval());
-        return s;
+        return best;
     }
 
 }

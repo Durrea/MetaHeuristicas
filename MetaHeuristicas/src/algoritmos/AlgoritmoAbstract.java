@@ -5,7 +5,7 @@
  */
 package algoritmos;
 
-import individuos.IntIndividuo;
+import individuos.Individuo;
 import problemas.IntProblema;
 
 /**
@@ -31,14 +31,13 @@ public abstract class AlgoritmoAbstract {
         this.ITERACIONES = iteraciones;
     }
 
-    public abstract IntIndividuo run(long seed);
-    
-    public double resultadoPromedio(int valorCentral)
-    {
+    public abstract Individuo run(long seed);
+
+    public double resultadoPromedio(int valorCentral) {
         double promedio = 0;
         for (int j = 0; j < valorCentral; j++) {
             promedio += this.run(j).getEval();
         }
-        return (promedio/valorCentral);
+        return (promedio / valorCentral);
     }
 }

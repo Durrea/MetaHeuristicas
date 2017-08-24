@@ -13,5 +13,5 @@ import java.util.ArrayList;
  */
 public interface IntProblema {
 
-    public double generarEvaluacion(ArrayList individuo);
+    public double generarEvaluacion(ArrayList<Double> individuo);
 }

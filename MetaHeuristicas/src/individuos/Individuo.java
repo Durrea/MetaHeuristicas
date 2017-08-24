@@ -15,7 +15,7 @@ import problemas.IntProblema;
  *
  * @author Urrea
  */
-public class Individuo implements IntIndividuo {
+public class Individuo{
 
     private ArrayList<Double> solucion = new ArrayList();
     private double evaluacion;
@@ -25,7 +25,7 @@ public class Individuo implements IntIndividuo {
         this.problema = problema;
     }
 
-    @Override
+    
     public void generarConfiguracionRandom(int tamaño, double min, double max, Random aleatorio) {
         for (int i = 0; i < tamaño; i++) {
             this.solucion.add((aleatorio.nextDouble() * (max - min)) + min);
@@ -33,7 +33,7 @@ public class Individuo implements IntIndividuo {
         this.getEvaluacion();
     }
 
-    @Override
+    
     public void tweak(double cambio, double min, double max, Random aleatorio) {
         for (int posElemento = 0; posElemento < this.getSolucion().size(); posElemento++) {
             double elementoTweak = ((double) this.getSolucion().get(posElemento)) + ((aleatorio.nextDouble() * (cambio * 2)) - cambio);
@@ -48,20 +48,20 @@ public class Individuo implements IntIndividuo {
         this.getEvaluacion();
     }
 
-    @Override
+    
     public void setEvaluacion(double evaluacion) {
         this.evaluacion = evaluacion;
     }
 
-    @Override
+    
     public double getEvaluacion() {
         this.setEvaluacion(this.problema.generarEvaluacion(this.getSolucion()));
         return this.getEval();
     }
 
-    @Override
-    public IntIndividuo clonarIndividuo() {
-        IntIndividuo clon = new Individuo(this.problema);
+    
+    public Individuo clonarIndividuo() {
+        Individuo clon = new Individuo(this.problema);
         for (int i = 0; i < this.getSolucion().size(); i++) {
             clon.getSolucion().add(this.getSolucion().get(i));
         }
@@ -70,27 +70,25 @@ public class Individuo implements IntIndividuo {
         return clon;
     }
 
-    @Override
+    
     public ArrayList getSolucion() {
         return solucion;
     }
 
-    @Override
+    
     public void setSolucion(ArrayList solucion) {
         this.solucion = solucion;
     }
 
-    @Override
+
     public double getEval() {
         return this.evaluacion;
     }
 
-    @Override
     public IntProblema getProblema() {
         return problema;
     }
 
-    @Override
     public void setProblema(IntProblema problema) {
         this.problema = problema;
     }

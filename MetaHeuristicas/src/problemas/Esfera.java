@@ -26,11 +26,11 @@ public class Esfera implements IntProblema {
     }
 
     @Override
-    public double generarEvaluacion(ArrayList individuo) {
+    public double generarEvaluacion(ArrayList<Double> individuo) {
         double evaluacion = 0;
         for (int i = 0; i < individuo.size(); i++) {
             //evaluacion += Double.parseDouble(individuo.getSolucion().get(i).toString()) * Double.parseDouble(individuo.getSolucion().get(i).toString());
-            evaluacion += (double) individuo.get(i) * (double) individuo.get(i);
+            evaluacion += individuo.get(i) * individuo.get(i);
         }
         //System.out.println("Eval " + evaluacion);
         return evaluacion;

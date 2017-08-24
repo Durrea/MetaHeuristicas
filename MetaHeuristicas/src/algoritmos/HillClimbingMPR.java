@@ -25,12 +25,12 @@ public class HillClimbingMPR extends AlgoritmoAbstract {
     }
 
     @Override
-    public IntIndividuo run(long seed) {
+    public Individuo run(long seed) {
         Random aleatorio = new Random(seed);
-        IntIndividuo s = new Individuo(problema);
-        IntIndividuo r;
-        IntIndividuo w;
-        IntIndividuo best;
+        Individuo s = new Individuo(problema);
+        Individuo r;
+        Individuo w;
+        Individuo best;
         s.generarConfiguracionRandom(TAM, MIN, MAX, aleatorio);
         best = s.clonarIndividuo();
         i = 0;
