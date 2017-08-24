@@ -9,10 +9,8 @@ import algoritmos.AlgoritmoAbstract;
 import algoritmos.HillClimbing;
 import algoritmos.HillClimbingMP;
 import algoritmos.HillClimbingMPR;
-import individuos.IntIndividuo;
-import java.util.Date;
-import problemas.Esfera;
 import problemas.IntProblema;
+import problemas.Esfera;
 
 /**
  *
@@ -26,6 +24,8 @@ public class Main {
     public static void main(String[] args) {
         // TODO code application logic here
         ejecutar();
+        
+        //Incluir RS - HC RS - TS;
     }
 
     private static void ejecutar() {
