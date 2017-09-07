@@ -27,7 +27,8 @@ public class SimulatedAnnealing extends AlgoritmoAbstract {
 
     @Override
     public Individuo run(long seed) {
-        i = 0 ; temp = 100;
+        i = 0;
+        temp = 100;
         Random aleatorio = new Random(seed);
         s = new Individuo(problema);
         s.generarConfiguracionRandom(TAM, MIN, MAX, aleatorio);

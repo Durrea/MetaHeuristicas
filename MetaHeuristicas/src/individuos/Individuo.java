@@ -15,7 +15,7 @@ import problemas.IntProblema;
  *
  * @author Urrea
  */
-public class Individuo{
+public class Individuo {
 
     private ArrayList<Double> solucion = new ArrayList();
     private double evaluacion;
@@ -25,7 +25,6 @@ public class Individuo{
         this.problema = problema;
     }
 
-    
     public void generarConfiguracionRandom(int tamaño, double min, double max, Random aleatorio) {
         for (int i = 0; i < tamaño; i++) {
             this.solucion.add((aleatorio.nextDouble() * (max - min)) + min);
@@ -33,7 +32,6 @@ public class Individuo{
         this.getEvaluacion();
     }
 
-    
     public void tweak(double cambio, double min, double max, Random aleatorio) {
         for (int posElemento = 0; posElemento < this.getSolucion().size(); posElemento++) {
             double elementoTweak = ((double) this.getSolucion().get(posElemento)) + ((aleatorio.nextDouble() * (cambio * 2)) - cambio);
@@ -48,18 +46,15 @@ public class Individuo{
         this.getEvaluacion();
     }
 
-    
     public void setEvaluacion(double evaluacion) {
         this.evaluacion = evaluacion;
     }
 
-    
     public double getEvaluacion() {
         this.setEvaluacion(this.problema.generarEvaluacion(this.getSolucion()));
         return this.getEval();
     }
 
-    
     public Individuo clonarIndividuo() {
         Individuo clon = new Individuo(this.problema);
         for (int i = 0; i < this.getSolucion().size(); i++) {
@@ -70,16 +65,13 @@ public class Individuo{
         return clon;
     }
 
-    
     public ArrayList getSolucion() {
         return solucion;
     }
 
-    
     public void setSolucion(ArrayList solucion) {
         this.solucion = solucion;
     }
-
 
     public double getEval() {
         return this.evaluacion;
@@ -91,6 +83,18 @@ public class Individuo{
 
     public void setProblema(IntProblema problema) {
         this.problema = problema;
+    }
+
+    public void improve(Random aleatorio, double bw, double min, double max) {
+        int dimMod = aleatorio.nextInt(this.solucion.size());
+        double elementoImprove = (double) this.getSolucion().get(dimMod) + aleatorio.nextDouble() * (bw * 2) - bw;
+        if (elementoImprove < min) {
+            elementoImprove = min;
+        }
+        if (elementoImprove > max) {
+            elementoImprove = max;
+        }
+        this.getSolucion().set(dimMod, elementoImprove);
     }
 
 }

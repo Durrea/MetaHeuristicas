@@ -28,8 +28,9 @@ public class Schwefel implements IntProblema {
     @Override
     public double generarEvaluacion(ArrayList<Double> individuo) {
         double evaluacion = 0;
-        double suma = 0;
+        double suma;
         for (int i = 0; i < individuo.size(); i++) {
+            suma = 0;
             for (int j = 0; j <= i; j++) {
                 suma += individuo.get(i);
             }
