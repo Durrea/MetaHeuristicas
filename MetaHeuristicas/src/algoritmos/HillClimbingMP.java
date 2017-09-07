@@ -18,6 +18,9 @@ public class HillClimbingMP extends AlgoritmoAbstract {
 
     private int i;
     private final int NUM_VECINOS;
+    Individuo s;
+    Individuo r;
+    Individuo w;
 
     public HillClimbingMP(IntProblema problema, int tam, double max, double min, double cambio, double iteraciones, int numVecinos) {
         super(problema, tam, max, min, cambio, iteraciones);
@@ -27,9 +30,7 @@ public class HillClimbingMP extends AlgoritmoAbstract {
     @Override
     public Individuo run(long seed) {
         Random aleatorio = new Random(seed);
-        Individuo s = new Individuo(problema);
-        Individuo r;
-        Individuo w;
+        s = new Individuo(problema);
         s.generarConfiguracionRandom(TAM, MIN, MAX, aleatorio);
         i = 0;
         do {
@@ -48,10 +49,7 @@ public class HillClimbingMP extends AlgoritmoAbstract {
             i++;
         } while (i < ITERACIONES);
 
-        //System.out.println("El mejor individuo obtuvo una evaluación final de: " + s.getEval());
         return s;
     }
-
-    
 
 }

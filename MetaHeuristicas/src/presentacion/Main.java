@@ -11,8 +11,12 @@ import algoritmos.HillClimbingMP;
 import algoritmos.HillClimbingMPR;
 import algoritmos.HillClimbingRR;
 import algoritmos.RandomSearch;
+import algoritmos.SimulatedAnnealing;
 import problemas.IntProblema;
-import problemas.Esfera;
+import problemas.Rastrigin;
+import problemas.Schwefel;
+import problemas.Sphere;
+import problemas.Step;
 
 /**
  *
@@ -37,8 +41,8 @@ public class Main {
         double cambio = 0.1;
         double iteraciones = 5000;
         int numVecinos = 5;
-        int tiempo = 5000;
-        IntProblema problema = Esfera.getInstance();
+        int tiempo = 3;
+        IntProblema problema = Rastrigin.getInstance();
 
         AlgoritmoAbstract algoritmo;
 
@@ -50,8 +54,10 @@ public class Main {
         System.out.println("Promedio HCMPR: " + algoritmo.resultadoPromedio(30));
         algoritmo = new RandomSearch(problema, tam, max, min, cambio, iteraciones);
         System.out.println("Promedio RS: " + algoritmo.resultadoPromedio(30));
-        /*algoritmo = new HillClimbingRR(problema, tam, max, min, cambio, iteraciones, tiempo);
-        System.out.println("Promedio HCRR: " + algoritmo.resultadoPromedio(30));*/
+        algoritmo = new HillClimbingRR(problema, tam, max, min, cambio, iteraciones, tiempo);
+        System.out.println("Promedio HCRR: " + algoritmo.resultadoPromedio(30));
+        algoritmo = new SimulatedAnnealing(problema, tam, max, min, cambio, iteraciones);
+        System.out.println("Promedio SA: " + algoritmo.resultadoPromedio(30));
     }
 
 }

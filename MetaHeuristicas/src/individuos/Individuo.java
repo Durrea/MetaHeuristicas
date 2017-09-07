@@ -8,7 +8,7 @@ package individuos;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import problemas.Esfera;
+import problemas.Sphere;
 import problemas.IntProblema;
 
 /**

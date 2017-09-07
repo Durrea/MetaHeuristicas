@@ -29,26 +29,28 @@ public class HillClimbingRR extends AlgoritmoAbstract {
 
     @Override
     public Individuo run(long seed) {
+        i = 0;
         Random aleatorio = new Random(seed);
         s = new Individuo(problema);
         s.generarConfiguracionRandom(TAM, MIN, MAX, aleatorio);
         best = s;
         do {
             t = 0;
-            do {
+            while (t < tiempo) {
                 r = s.clonarIndividuo();
                 r.tweak(CAMBIO, MIN, MAX, aleatorio);
                 if (r.getEval() < s.getEval()) {
                     s = r;
                 }
                 t++;
-            } while (t < tiempo);
+            }
             if (s.getEval() < best.getEval()) {
                 best = s;
             }
+            s = new Individuo(problema);
+            s.generarConfiguracionRandom(TAM, MIN, MAX, aleatorio);
             i++;
         } while (i < ITERACIONES);
-        //System.out.println("El mejor individuo obtuvo una evaluación final de: " + s.getEval());
         return best;
     }
 

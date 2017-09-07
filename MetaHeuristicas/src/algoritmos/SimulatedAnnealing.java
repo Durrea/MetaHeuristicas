@@ -5,7 +5,6 @@
  */
 package algoritmos;
 
-import individuos.IntIndividuo;
 import individuos.Individuo;
 import java.util.Random;
 import problemas.IntProblema;
@@ -14,35 +13,43 @@ import problemas.IntProblema;
  *
  * @author Urrea
  */
-public class HillClimbing extends AlgoritmoAbstract {
+public class SimulatedAnnealing extends AlgoritmoAbstract {
 
+    private double temp;
     private int i;
     Individuo s;
+    Individuo best;
     Individuo r;
 
-    public HillClimbing(IntProblema problema, int tam, double max, double min, double cambio, double iteraciones) {
+    public SimulatedAnnealing(IntProblema problema, int tam, double max, double min, double cambio, double iteraciones) {
         super(problema, tam, max, min, cambio, iteraciones);
     }
 
     @Override
     public Individuo run(long seed) {
+        i = 0 ; temp = 100;
         Random aleatorio = new Random(seed);
         s = new Individuo(problema);
         s.generarConfiguracionRandom(TAM, MIN, MAX, aleatorio);
-        i = 0;
+        best = s;
         do {
             r = s.clonarIndividuo();
             r.tweak(CAMBIO, MIN, MAX, aleatorio);
-            if (r.getEval() < s.getEval()) {
-                s = r;
+            if (r.getEval() < s.getEval() || probabilidad(aleatorio)) {
+                s = r.clonarIndividuo();
+            }
+            temp = temp * 0.99;
+            if (s.getEval() < best.getEval()) {
+                best = s.clonarIndividuo();
             }
             i++;
         } while (i < ITERACIONES);
-
-        //System.out.println("El mejor individuo obtuvo una evaluación final de: " + s.getEval());
-        return s;
+        return best;
     }
-    
-    
+
+    private boolean probabilidad(Random aleatorio) {
+        return aleatorio.nextDouble() < Math.pow(Math.E, (-(r.getEval() - s.getEval()) / temp));
+        //return aleatorio.nextDouble() < Math.exp((r.getEval()-s.getEval())/temp);
+    }
 
 }

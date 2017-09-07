@@ -11,28 +11,26 @@ import java.util.ArrayList;
  *
  * @author Urrea
  */
-public class Esfera implements IntProblema {
+public class Rastrigin implements IntProblema {
 
-    private static Esfera esfera;
+    private static Rastrigin rastrigin;
 
-    private Esfera() {
+    private Rastrigin() {
     }
 
-    public static Esfera getInstance() {
-        if (esfera == null) {
-            esfera = new Esfera();
+    public static Rastrigin getInstance() {
+        if (rastrigin == null) {
+            rastrigin = new Rastrigin();
         }
-        return esfera;
+        return rastrigin;
     }
 
     @Override
     public double generarEvaluacion(ArrayList<Double> individuo) {
         double evaluacion = 0;
         for (int i = 0; i < individuo.size(); i++) {
-            //evaluacion += Double.parseDouble(individuo.getSolucion().get(i).toString()) * Double.parseDouble(individuo.getSolucion().get(i).toString());
-            evaluacion += individuo.get(i) * individuo.get(i);
+            evaluacion += Math.pow(individuo.get(i), 2.0) - 10.0 * Math.cos(2 * Math.PI * individuo.get(i)) + 10;
         }
-        //System.out.println("Eval " + evaluacion);
         return evaluacion;
     }
 }
