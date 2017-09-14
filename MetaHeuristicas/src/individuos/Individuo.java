@@ -29,8 +29,8 @@ public class Individuo {
         System.out.println("Entre");
         for (int i = 0; i < tamaño; i++) {
             if (aleatorio.nextDouble() > 0.7) {
-                double valor = Redondear(aleatorio.nextDouble() * (max - min)) + min;
-                System.out.println("vlor" + valor);
+                double valor = Redondear(aleatorio.nextDouble() * (max - min) + min);
+                //System.out.println("vlor" + valor);
                 this.solucion.add(valor);
             } else {
                 this.solucion.add(0.0);
@@ -42,20 +42,19 @@ public class Individuo {
 
     public void tweak(double cambio, double min, double max, Random aleatorio) {
         for (int posElemento = 0; posElemento < this.getSolucion().size(); posElemento++) {
-            double elementoTweak = Redondear((double) this.getSolucion().get(posElemento)) + ((aleatorio.nextDouble() * (cambio * 2)) - cambio);
-            System.out.println(elementoTweak);
+            double elementoTweak = Redondear((double) this.getSolucion().get(posElemento) + ((aleatorio.nextDouble() * (cambio * 2)) - cambio));
             if (elementoTweak < min) {
                 elementoTweak = min;
             }
             if (elementoTweak > max) {
                 elementoTweak = max;
             }
-            if (aleatorio.nextDouble() > 0.6) {
+            if (aleatorio.nextDouble() > 0.7) {
                 this.getSolucion().set(posElemento, elementoTweak);
             } else {
                 this.getSolucion().set(posElemento, 0.0);
             }
-            
+
         }
         this.getEvaluacion();
     }
@@ -111,8 +110,7 @@ public class Individuo {
         this.getSolucion().set(dimMod, elementoImprove);
     }
 
-    
     public double Redondear(double numero) {
-        return Math.rint(numero * 10d) / 10;
+        return Math.rint(numero * 10d) / 10d;
     }
 }
