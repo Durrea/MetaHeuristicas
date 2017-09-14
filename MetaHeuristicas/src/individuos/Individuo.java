@@ -26,7 +26,7 @@ public class Individuo {
     }
 
     public void generarConfiguracionRandom(int tamaño, double min, double max, Random aleatorio) {
-        System.out.println("Entre");
+
         for (int i = 0; i < tamaño; i++) {
             if (aleatorio.nextDouble() > 0.7) {
                 double valor = Redondear(aleatorio.nextDouble() * (max - min) + min);
@@ -49,7 +49,7 @@ public class Individuo {
             if (elementoTweak > max) {
                 elementoTweak = max;
             }
-            if (aleatorio.nextDouble() > 0.7) {
+            if (aleatorio.nextDouble() > 0.5) {
                 this.getSolucion().set(posElemento, elementoTweak);
             } else {
                 this.getSolucion().set(posElemento, 0.0);
