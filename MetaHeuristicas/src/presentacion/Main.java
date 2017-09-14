@@ -13,10 +13,13 @@ import algoritmos.HillClimbingMPR;
 import algoritmos.HillClimbingRR;
 import algoritmos.RandomSearch;
 import algoritmos.SimulatedAnnealing;
+import gestorArchivos.LeerFichero;
+import java.io.IOException;
 import java.util.ArrayList;
 import problemas.Ackley;
 import problemas.Griewank;
 import problemas.IntProblema;
+import problemas.Parcial;
 import problemas.Rastrigin;
 import problemas.Schwefel;
 import problemas.Sphere;
@@ -31,9 +34,10 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // TODO code application logic here
-        ejecutarTodo();
+        //ejecutarTodo();
+        ejecutarParcial();
         //Incluir RS - HC RS - TS;
     }
 
@@ -117,6 +121,25 @@ public class Main {
         algoritmo = new BetaHillClimbing(problema, tam, max, min, cambio, iteraciones, bw, b);
         algoritmo.resultadoPromedio(30);
         //System.out.println("Promedio BHC: " + algoritmo.resultadoPromedio(30));
+    }
+
+    private static void ejecutarParcial() throws IOException {
+        IntProblema problema = new Parcial();
+        double max = 10;
+        double min = -10;
+        int tam = 55;
+        double cambio = 0.6;
+        double iteraciones = 100;
+        int numVecinos = 5;
+        int tiempo = 3;
+        double bw = 0.6;
+        double b = 0.5;
+
+        AlgoritmoAbstract algoritmo;
+        System.out.println("*******************************************************************");
+        System.out.println(problema.getClass().getSimpleName());
+        algoritmo = new HillClimbing(problema, tam, max, min, cambio, iteraciones);
+        algoritmo.resultadoPromedio(1);
     }
 
 }

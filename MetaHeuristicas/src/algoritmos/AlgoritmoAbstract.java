@@ -41,7 +41,9 @@ public abstract class AlgoritmoAbstract {
         double promedio = 0;
         Long tiempoInicio = System.currentTimeMillis();
         for (int j = 0; j < valorCentral; j++) {
-            double resultado = this.run(j).getEval();
+            Individuo ind = this.run(j);
+            double resultado = ind.getEval();
+            
             resultados.add(resultado);
             promedio += resultado;
         }

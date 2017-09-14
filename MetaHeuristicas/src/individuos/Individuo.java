@@ -26,22 +26,36 @@ public class Individuo {
     }
 
     public void generarConfiguracionRandom(int tamaño, double min, double max, Random aleatorio) {
+        System.out.println("Entre");
         for (int i = 0; i < tamaño; i++) {
-            this.solucion.add((aleatorio.nextDouble() * (max - min)) + min);
+            if (aleatorio.nextDouble() > 0.7) {
+                double valor = Redondear(aleatorio.nextDouble() * (max - min)) + min;
+                System.out.println("vlor" + valor);
+                this.solucion.add(valor);
+            } else {
+                this.solucion.add(0.0);
+            }
+
         }
         this.getEvaluacion();
     }
 
     public void tweak(double cambio, double min, double max, Random aleatorio) {
         for (int posElemento = 0; posElemento < this.getSolucion().size(); posElemento++) {
-            double elementoTweak = ((double) this.getSolucion().get(posElemento)) + ((aleatorio.nextDouble() * (cambio * 2)) - cambio);
+            double elementoTweak = Redondear((double) this.getSolucion().get(posElemento)) + ((aleatorio.nextDouble() * (cambio * 2)) - cambio);
+            System.out.println(elementoTweak);
             if (elementoTweak < min) {
                 elementoTweak = min;
             }
             if (elementoTweak > max) {
                 elementoTweak = max;
             }
-            this.getSolucion().set(posElemento, elementoTweak);
+            if (aleatorio.nextDouble() > 0.6) {
+                this.getSolucion().set(posElemento, elementoTweak);
+            } else {
+                this.getSolucion().set(posElemento, 0.0);
+            }
+            
         }
         this.getEvaluacion();
     }
@@ -97,4 +111,8 @@ public class Individuo {
         this.getSolucion().set(dimMod, elementoImprove);
     }
 
+    
+    public double Redondear(double numero) {
+        return Math.rint(numero * 10d) / 10;
+    }
 }
