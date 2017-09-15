@@ -129,7 +129,7 @@ public class Main {
         double min = -10;
         int tam = 55;
         double cambio = 0.6;
-        double iteraciones = 100000;
+        double iteraciones = 1;
         int numVecinos = 5;
         int tiempo = 3;
         double bw = 0.6;

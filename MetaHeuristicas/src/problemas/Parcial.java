@@ -36,18 +36,20 @@ public class Parcial implements IntProblema {
         double error;
         double errorTotal = 0;
         int contador;
-        for (int i = 0; i < miFichero.size(); i++) {
+        for (int i = 0; i < 1; i++) {
             evaluacion = 0;
             error = 0;
             contador = 1;
             for (int j = 0; j < miFichero.get(i).size() - 1; j++) {
                 evaluacion = evaluacion + miFichero.get(i).get(j) * individuo.get(contador);
+                System.out.println(miFichero.get(i).get(j) + "*" + individuo.get(contador));
                 contador++;
             }
             for (int j = 0; j < miFichero.get(i).size() - 1; j++) {
                 for (int k = j; k < miFichero.get(i).size() - 1; k++) {
                     evaluacion = evaluacion + miFichero.get(i).get(j) * miFichero.get(i).get(k) * individuo.get(contador);
-                    //System.out.println(contador);
+                    System.out.println(miFichero.get(i).get(j)+"*"+miFichero.get(i).get(k)+"*"+individuo.get(contador));
+                    System.out.println(contador);
                     contador++;
 
                 }
@@ -56,11 +58,6 @@ public class Parcial implements IntProblema {
             error = miFichero.get(i).get(9) - evaluacion;
             error = Math.pow(error, 2);
             errorTotal = errorTotal + error;
-            if(i==0 || i==1)
-            {
-                System.out.println("evaluacion:" + evaluacion);
-                System.out.println("error:" + error);
-            }
 
         }
         return errorTotal;
