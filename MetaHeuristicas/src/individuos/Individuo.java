@@ -100,17 +100,22 @@ public class Individuo {
 
     public void improve(Random aleatorio, double bw, double min, double max) {
         int dimMod = aleatorio.nextInt(this.solucion.size());
-        double elementoImprove = (double) this.getSolucion().get(dimMod) + aleatorio.nextDouble() * (bw * 2) - bw;
+        double elementoImprove = Redondear((double) this.getSolucion().get(dimMod) + aleatorio.nextDouble() * (bw * 2) - bw);
         if (elementoImprove < min) {
             elementoImprove = min;
         }
         if (elementoImprove > max) {
             elementoImprove = max;
         }
-        this.getSolucion().set(dimMod, elementoImprove);
+        if (aleatorio.nextDouble() > 0.5) {
+            this.getSolucion().set(dimMod, elementoImprove);
+        } else {
+            this.getSolucion().set(dimMod, 0.0);
+        }
+
     }
 
     public double Redondear(double numero) {
-        return Math.rint(numero * 10d) / 10d;
+        return Math.rint(numero * 10) / 10;
     }
 }

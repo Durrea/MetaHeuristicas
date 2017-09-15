@@ -53,9 +53,14 @@ public class Parcial implements IntProblema {
                 }
             }
             evaluacion = evaluacion + individuo.get(0);
-            error = miFichero.get(i).get(8) - evaluacion;
+            error = miFichero.get(i).get(9) - evaluacion;
             error = Math.pow(error, 2);
             errorTotal = errorTotal + error;
+            if(i==0 || i==1)
+            {
+                System.out.println("evaluacion:" + evaluacion);
+                System.out.println("error:" + error);
+            }
 
         }
         return errorTotal;
