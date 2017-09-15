@@ -49,7 +49,7 @@ public class Parcial implements IntProblema {
                 for (int k = j; k < miFichero.get(i).size() - 1; k++) {
                     evaluacion = evaluacion + miFichero.get(i).get(j) * miFichero.get(i).get(k) * individuo.get(contador);
                     System.out.println(miFichero.get(i).get(j)+"*"+miFichero.get(i).get(k)+"*"+individuo.get(contador));
-                    System.out.println(contador);
+                    //System.out.println(contador);
                     contador++;
 
                 }

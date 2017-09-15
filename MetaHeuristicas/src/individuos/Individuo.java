@@ -28,7 +28,7 @@ public class Individuo {
     public void generarConfiguracionRandom(int tamaño, double min, double max, Random aleatorio) {
 
         for (int i = 0; i < tamaño; i++) {
-            if (aleatorio.nextDouble() > 0.7) {
+            if (aleatorio.nextDouble() > 0.5) {
                 double valor = Redondear(aleatorio.nextDouble() * (max - min) + min);
                 //System.out.println("vlor" + valor);
                 this.solucion.add(valor);
